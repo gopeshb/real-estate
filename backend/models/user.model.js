@@ -14,6 +14,10 @@ const userSchema= new mongoose.Schema({
         type:String,
         required:true,
     },
+    avatar:{
+        type:String,
+        default:"https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/my-account-icon.png",
+    }
 },{timestamps:true});
 const User = mongoose.model('User',userSchema);
 export default User;
