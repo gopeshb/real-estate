@@ -2,6 +2,7 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { app } from "../firebase";
+import {Link } from 'react-router-dom';
 import { updateUserFailure, updateUserStart, updateUserSuccess,deleteUserFailure,deleteUserStart,deleteUserSuccess, 
   signOutUserStart, signOutUserFailure, signOutUserSuccess } from '../redux/user/userSlice';
 
@@ -138,6 +139,7 @@ export default function Profile() {
         <button disabled={loading} className="bg-slate-700 text-white rounded-lg p-2 uppercase disabled:opacity-80 hover:opacity-90">
           {loading?'Loading...':'Update'}
         </button>
+        <Link className='bg-blue-500 text-center uppercase text-white rounded-lg p-2 hover:opacity-90' to={"/create-listing"}>Create Listing</Link>
       </form>
       {error && <p className='text-red-500 mt-2 mx-1 text-sm'>{error}</p>}
       {updateSuccess && <p className='text-green-700 mt-2 mx-1 text-sm'>user updated successfully</p>}
