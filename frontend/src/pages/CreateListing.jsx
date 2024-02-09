@@ -1,11 +1,84 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
+import { app } from '../firebase';
 
 export default function CreateListing() {
+    const [files,setFiles]=useState([]);
+    const [formData,setFormData]=useState({
+        imagesUrls:[],
+    });
+    const [imageUploadError,setImageUploadError]=useState(false);
+    const [uploading, setUploading] = useState(false);
+    
+    const handleImageSubmit = (e) => {
+        if (files.length > 0 && files.length + formData.imagesUrls.length < 7) {
+          setUploading(true);
+          setImageUploadError(false);
+          const promises = [];
+    
+          for (let i = 0; i < files.length; i++) {
+            promises.push(storeImage(files[i]));
+          }
+          Promise.all(promises)
+            .then((urls) => {
+              setFormData({
+                ...formData,
+                imagesUrls: formData.imagesUrls.concat(urls),
+              });
+              setImageUploadError(false);
+              setUploading(false);
+            })
+            .catch((err) => {
+              setImageUploadError('Image upload failed (2 mb max per image)');
+              setUploading(false);
+            });
+        } else {
+            if(files.length==0)
+            setImageUploadError('Please select atleast 1 image to upload in listing');
+            else
+          setImageUploadError('You can only upload 6 images per listing');
+          setUploading(false);
+        }
+      };
+    const storeImage = async (file) => {
+        return new Promise((resolve, reject) => {
+          const storage = getStorage(app);
+          const fileName = new Date().getTime() + file.name;
+          const storageRef = ref(storage, fileName);
+          const uploadTask = uploadBytesResumable(storageRef, file);
+          uploadTask.on(
+            'state_changed',
+            (snapshot) => {
+              const progress =
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              console.log(`Upload is ${progress}% done`);
+            },
+            (error) => {
+              reject(error);
+            },
+            () => {
+              getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                resolve(downloadURL);
+              });
+            }
+          );
+        });
+      };
+      const openImageInNewWindow = (url) => {
+        window.open(url, '_blank');
+      };
+      const handleRemoveImage = (index) => {
+        setFormData({
+          ...formData,
+          imagesUrls: formData.imagesUrls.filter((_, i) => i !== index),
+        });
+      };
+    console.log(formData);
   return (
     <main className='p-2 max-w-4xl mx-auto '>
         <h1 className='text-2xl font-bold text-center my-7 '>Create Listing</h1>
-        <form className='flex flex-col sm:flex-row gap-6'>
-            <div className='flex flex-col gap-4 flex-1'>
+        <form className='flex flex-col sm:flex-row gap-8 m-6'>
+            <div className='flex flex-col gap-6 flex-1'>
                 <input className='border p-3 rounded-lg' type='text' placeholder='Name' id='name'
                  maxLength='64' minLength='8' required/>
                  <textarea className='border p-3 rounded-lg' type='text' placeholder='Description' id='description'
@@ -60,17 +133,39 @@ export default function CreateListing() {
 
             </div>
             <div className='flex flex-col gap-4 flex-1'>
-                <p className='font-semibold'>Images:</p>
-                <span className='text-gray-500'>The first image will be used as the cover image (max image upload 6)</span>
-                <div className='flex gap-4'>
-                <input className='p-3 border border-gray-400 rounded w-full'type='file' id='images' accept='image/*' multiple/>
-                    <button className='p-3 text-green-900 border rounded uppercase
-                     bg-green-300 hover:shadow-lg disabled:opacity-80'>Upload</button>
+                <p className='font-semibold px-2'>Images:</p>
+                <span className='text-gray-500 px-2'>The first image will be used as the cover image, with a maximum of 6 images allowed for upload.</span>
+                <div className='flex p-2 gap-4'>
+                <label htmlFor="images" className="flex gap-8 items-center">
+                <input onChange={(e) => setFiles(e.target.files)} className="hidden" type="file"
+                id="images" accept="image/*" multiple />
+               <div className="p-4 border  border-gray-400 rounded cursor-pointer">Choose Files </div>
+               <button disabled={uploading} type="button" onClick={handleImageSubmit}
+               className="p-3 text-green-900 border  rounded uppercase font-semibold bg-green-300 hover:shadow-lg disabled:opacity-80">
+   {uploading ? 'Uploading...' : 'Upload'}</button>
+</label>
                 </div>
+                {imageUploadError && <p className='text-red-500 mt-1 mx-1 text-sm text-semibold'>{imageUploadError}</p>}
+                {
+  formData.imagesUrls && formData.imagesUrls.length > 0 && (
+    <div className="flex flex-wrap gap-4 p-2">
+      {formData.imagesUrls.map((url, index) => (
+        <div className='flex gap-2 justify-center border-2 border-gray-400 rounded-lg p-3'>
+        <div key={index} className="flex flex-col items-center mx-2" onClick={() => openImageInNewWindow(url)}>
+          <img src={url} alt={`listing-image-${index + 1}`} className='w-16 h-16  object-cover rounded-lg mb-2 cursor-pointer' />
+          <span className="text-sm font-semibold">Image {index + 1}</span>
+          </div>
+          <button type='button' onClick={() => handleRemoveImage(index)} 
+          className='p-4 text-red-700 rounded-lg uppercase hover:opacity-90 text-sm font-semibold'>delete</button>
+        </div>
+      ))}
+    </div>
+  )
+}
+
                 <button className='mx-1 p-3 bg-blue-500 text-white rounded-lg uppercase 
             hover:opacity-90 disabled:opacity-80 '>Create Listing</button>
             </div>
-            
         </form>
     </main>
   )
