@@ -12,6 +12,7 @@ export const verifyToken=(req,res,next)=>{
         next();
     })
 }catch(error){
+    console.log('errror ha kya koi token me')
     next(error);
 }
 }
