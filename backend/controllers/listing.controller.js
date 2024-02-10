@@ -50,3 +50,17 @@ export const createListing = async (req, res, next) => {
     }
   };
   
+  export const getListing = async (req, res, next) => {
+    try {
+      const listing = await Listing.findById(req.params.id);
+      if (!listing) {
+        return res.status(404).send('Listing not found');
+      }
+      res.status(200).json(listing);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error while fetching the list');
+    }
+  };
+  
+  
