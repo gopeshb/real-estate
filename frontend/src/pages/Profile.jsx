@@ -100,7 +100,7 @@ export default function Profile() {
     }
   };
   return (
-    <div className="p-4 max-w-md mx-auto my-8 bg-white rounded-lg shadow-md">
+    <div className="p-4 max-w-md mx-auto my-5 bg-white rounded-lg shadow-md">
       <h1 className="text-2xl font-semibold text-center mb-4">Profile</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="flex justify-center">
@@ -136,10 +136,11 @@ export default function Profile() {
         </label>
         <input onChange={handleChange} type="password" placeholder="Password" className="border p-2 rounded-lg text-slate-600 font-semibold" id="password" />
         
-        <button disabled={loading} className="bg-slate-700 text-white rounded-lg p-2 uppercase disabled:opacity-80 hover:opacity-90">
+        <button disabled={loading} className="mx-1 bg-slate-700 text-center text-sm font-semibold text-white rounded-lg p-2 uppercase disabled:opacity-80 hover:opacity-90">
           {loading?'Loading...':'Update'}
         </button>
-        <Link className='bg-blue-500 text-center uppercase text-white rounded-lg p-2 hover:opacity-90' to={"/create-listing"}>Create Listing</Link>
+        <Link className='mx-1 bg-blue-500 text-center text-sm font-semibold uppercase text-white rounded-lg p-2 hover:opacity-90' to={"/create-listing"}>Create Listing</Link>
+        <Link className='mx-1 bg-blue-500 text-center text-sm font-semibold uppercase text-white rounded-lg p-2 hover:opacity-90' to={"/show-listing"}>Show Listings</Link>
       </form>
       {error && <p className='text-red-500 mt-2 mx-1 text-sm'>{error}</p>}
       {updateSuccess && <p className='text-green-700 mt-2 mx-1 text-sm'>user updated successfully</p>}
