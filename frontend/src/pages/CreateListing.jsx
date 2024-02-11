@@ -82,6 +82,7 @@ export default function CreateListing() {
           ...formData,
           imageUrls: formData.imageUrls.filter((_, i) => i !== index),
         });
+        toast.success("image removed successfully");
       };
       const handleChange = (e) => {
         if (e.target.id === 'sale' || e.target.id === 'rent') {
