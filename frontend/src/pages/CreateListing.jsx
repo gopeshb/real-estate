@@ -3,6 +3,7 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/
 import { app } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { toast } from 'react-hot-toast';
 export default function CreateListing() {
   const {currentUser}=useSelector(state=>state.user);
   const navigate=useNavigate();
@@ -37,7 +38,7 @@ export default function CreateListing() {
               setUploading(false);
             })
             .catch((err) => {
-              setImageUploadError('Image upload failed (2 mb max per image)');
+              setImageUploadError('Image upload failed (3 mb max per image)');
               setUploading(false);
             });
         } else {
@@ -73,6 +74,7 @@ export default function CreateListing() {
         });
       };
       const openImageInNewWindow = (url) => {
+        toast.success("opening image in new tab");
         window.open(url, '_blank');
       };
       const handleRemoveImage = (index) => {
@@ -123,6 +125,7 @@ export default function CreateListing() {
             setError(data.message);
           }
           navigate(`/listing/${data._id}`);
+          toast.success("Redirecting you to the Listing Page");
         } catch (error) {
           console.log('koi error h kya');
           setError(error.message);
@@ -139,7 +142,7 @@ export default function CreateListing() {
                  maxLength='64' minLength='8' required onChange={handleChange}
                  value={formData.name}/>
                  <textarea className='border p-3 rounded-lg' type='text' placeholder='Description' id='description'
-                  minLength='8' required onChange={handleChange}
+                  minLength='20' required onChange={handleChange}
                   value={formData.description}/>
                   <input type='text' placeholder='Address' className='border p-3 rounded-lg' id='address' required
                   onChange={handleChange} value={formData.address}/>
@@ -233,8 +236,7 @@ export default function CreateListing() {
     </div>
   )
 }
-
-                <button disabled={loading} className='mx-1 p-3 bg-blue-500 text-white rounded-lg uppercase 
+          <button disabled={loading} className='mx-1 p-3 bg-blue-500 text-white rounded-lg uppercase 
             hover:opacity-90 disabled:opacity-80 '>{loading?"Creating...":'Create Listing'}</button>
             </div>
             {error && <p className='text-red-500 mt-1 mx-1 text-sm text-semibold'>{error}</p>}

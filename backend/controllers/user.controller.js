@@ -50,3 +50,17 @@ export const deleteUser = async (req, res, next) => {
         return next(errorHandler(401, 'You are not verified to view this listing'));
       }
   }
+  export const getUser= async(req,res,next)=>{
+    try {
+      const user =await User.findById(req.params.id);
+      if(!user){
+        return res.status(404).send("user not found");
+      }
+      const {password:pass,...rest}=user._doc;
+      res.status(200).json(rest);
+    } catch (error) {
+      res.status(500).send("please try again after some time")
+    }
+    
+
+  }

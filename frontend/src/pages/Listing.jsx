@@ -79,7 +79,7 @@ export default function Listing() {
             <p className='text-2xl font-semibold font-mono uppercase p-2 rounded-lg border-4 border-dashed border-blue-900'>{listing.name}</p>
             <p className=' font-semibold font-serif text-lg'><span className='text-blue-700 font-bold text-xl'>Rate :-</span>  ₹{' '}
               {listing.offer
-                ? listing.discountPrice.toLocaleString('en-US')
+                ? listing.discountedPrice.toLocaleString('en-US')
                 : listing.regularPrice.toLocaleString('en-US')}
               {listing.type === 'rent' && ' / month'}
             </p>
@@ -92,8 +92,8 @@ export default function Listing() {
                 {listing.type === 'rent' ? 'For Rent' : 'For Sale'}
               </p>
               {listing.offer && (
-                <p className='bg-blue-800 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
-                  ${+listing.regularPrice - +listing.discountPrice} OFF
+                <p className='bg-blue-800 w-full max-w-[200px] text-white font-semibold text-center p-2 rounded-md'>
+                  OFFER ₹{+listing.regularPrice - +listing.discountedPrice} OFF
                 </p>
               )}
             </div>
@@ -126,12 +126,12 @@ export default function Listing() {
             {currentUser && listing.userRef !== currentUser._id && !contact && (
               <button
                 onClick={() => setContact(true)}
-                className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'
+                className='bg-slate-700 text-white font-semibold text-center rounded-lg uppercase hover:opacity-95 p-3 m-2'
               >
                 Contact landlord
               </button>
             )}
-            {contact && <Contact listing={listing} />}
+            {contact && <Contact className='w-full'listing={listing} />}
           </div>
         </div>
       )}
