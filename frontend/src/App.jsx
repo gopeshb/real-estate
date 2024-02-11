@@ -9,12 +9,16 @@ import PrivateRoute from "./components/PrivateRoute";
 import CreateListing from "./pages/CreateListing";
 import ShowListing from "./pages/ShowListing";
 import UpdateListing from "./pages/UpdateListing";
+import Listing from "./pages/Listing";
+import { Toaster } from 'react-hot-toast';
 export default function App() {
   return (
     <BrowserRouter>
+    <Toaster/>
     <Header/>
     <Routes>
       <Route path="/" element={<Home/>}/>
+      <Route path="/listing/:listingId" element={<Listing/>}/>
       <Route path="/sign-in" element={<SignIn/>}/>
       <Route path="/sign-up" element={<SignUp/>}/>
       <Route path="/about" element={<About/>}/>
