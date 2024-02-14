@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInFailure, signInStart, signInSuccess } from '../redux/user/userSlice';
 import OAuth from '../components/OAuth';
+import { toast } from 'react-hot-toast';
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ export default function SignIn() {
         return;
       }
       dispatch(signInSuccess(data));
+      toast.success("Logged In Successfully");
       navigate('/');
     } catch (error) {
       dispatch(signInFailure('An unexpected error occurred. Please try again.'));
@@ -77,7 +79,8 @@ export default function SignIn() {
       <div className="flex items-center my-2 mx-3">
     <p className="text-sm font-semibold">Don't have an account?</p>
    <Link to="/sign-up">
-     <span className="text-blue-700 ml-1 hover:underline font-semibold text-sm">Sign Up</span>
+     <span onClick={()=>toast.success('Redirecting to Sign Up Page')} 
+     className="text-blue-700 ml-1 hover:underline font-semibold text-sm">Sign Up</span>
    </Link>
    </div>
 

@@ -13,7 +13,7 @@ function Header() {
     if(searchTermfromUrl){
       setSearchTerm(searchTermfromUrl);
     }
-  },[]);
+  },[location.search]);
   const handleSubmit=(e)=>{
     e.preventDefault();
     const urlParams=new URLSearchParams(window.location.search);

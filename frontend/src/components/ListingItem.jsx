@@ -8,7 +8,7 @@ export default function ListingItem({ listing }) {
         <img
           src={
             listing.imageUrls[0] ||
-            'https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/Sales_Blog/real-estate-business-compressor.jpg?width=595&height=400&name=real-estate-business-compressor.jpg'
+            'https://media.istockphoto.com/id/1352945762/vector/no-image-available-like-missing-picture.jpg?s=1024x1024&w=is&k=20&c=VDMvYrJR3Q7ZqAFqPpT1jd794HcjeQw-O39guW2e57A='
           }
           alt='listing cover'
           className='h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300'
@@ -26,11 +26,11 @@ export default function ListingItem({ listing }) {
           <p className='text-sm text-gray-600 line-clamp-2'>
             {listing.description}
           </p>
-          <p className='text-slate-500 mt-2 font-semibold'>
+          <p className='text-cyan-800 mt-2 font-bold'>
             ₹{' '}
             {listing.offer
-              ? listing.discountedPrice.toLocaleString('en-US')
-              : listing.regularPrice.toLocaleString('en-US')}
+              ? listing.discountedPrice.toLocaleString('en-IN')
+              : listing.regularPrice.toLocaleString('en-IN')}
             {listing.type === 'rent' && ' / month'}
           </p>
           <div className='text-slate-700 flex gap-4'>

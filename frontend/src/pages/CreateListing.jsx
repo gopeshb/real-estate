@@ -178,7 +178,7 @@ export default function CreateListing() {
                     <div className='flex item-center gap-2 font-semibold'>
                         <input className='p-2 border-gray-400 rounded-lg' type='number' id='bedrooms' min='1' max='100' required  onChange={handleChange}
                 value={formData.bedrooms}/>
-                        <p className='text-sm font-semibold self-center'>Beds</p>
+                        <p className='text-sm font-semibold self-center'>Bedrooms</p>
                     </div>
                     <div className='flex item-center gap-2 font-semibold'>
                         <input className='p-2 border-gray-400 rounded-lg' type='number' id='bathrooms' min='1' max='100' required

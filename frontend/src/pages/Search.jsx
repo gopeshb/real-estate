@@ -135,9 +135,9 @@ export default function Search() {
   };
   return (
     <div className='flex flex-col md:flex-row text-sm'>
-      <div className='p-5 border-b-2 md:border-r-2 md:min-h-screen'>
+      <div className='p-5 border-b-2 md:border-r-2 md:min-h-screen '>
         <button
-          className='bg-slate-700 text-white p-3 rounded-lg uppercase font-semibold hover:opacity-95 mb-4 flex gap-1 items-center'
+          className='bg-blue-700 text-white p-3 rounded-lg uppercase font-semibold hover:opacity-95 mb-4 flex gap-1 items-center'
           onClick={toggleFilter}
         ><CiFilter className=' h-5 w-5'/>
           Filter
@@ -239,14 +239,14 @@ export default function Search() {
   </select>
 </div>
 
-            <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'>
+            <button className='bg-blue-700 text-white p-3 rounded-lg uppercase hover:opacity-95'>
               Search
             </button>
           </form>
         </div>
       </div>
       <div className='flex-1 '>
-      <div className='p-6 flex flex-wrap gap-4 justify-evenly'>
+      <div className='p-6 flex flex-wrap gap-4 '>
           {!loading && listings.length === 0 && (
             <p className='text-xl text-blue-700 text-center w-full'>No listing found!</p>
           )}
@@ -265,7 +265,7 @@ export default function Search() {
           {showMore && (
             <button
               onClick={onShowMoreClick}
-              className='text-green-700 hover:underline p-7 text-center w-full'
+              className='text-green-700 font-semibold hover:underline p-7 text-center w-full'
             >
               Show more
             </button>

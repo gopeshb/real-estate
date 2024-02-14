@@ -5,6 +5,7 @@ import { app } from "../firebase";
 import {Link } from 'react-router-dom';
 import { updateUserFailure, updateUserStart, updateUserSuccess,deleteUserFailure,deleteUserStart,deleteUserSuccess, 
   signOutUserStart, signOutUserFailure, signOutUserSuccess } from '../redux/user/userSlice';
+import { toast } from 'react-hot-toast';
 
 export default function Profile() {
   const fileRef=useRef(null);
@@ -15,6 +16,8 @@ export default function Profile() {
   const [formData,setFormData]=useState({});
   const dispatch=useDispatch();
   const [updateSuccess,setUpdateSuccess]=useState(false);
+  const deleteUsertoast = () => toast.success('Account Deleted Successfully');
+  const signOutUsertoast = () => toast.success('User Logged Out Successfully');
   console.log(currentUser);
   useEffect(()=>{
   if(file){
@@ -25,6 +28,7 @@ export default function Profile() {
     const fileName = new Date().getTime() + file.name;
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, file);
+    
 
     uploadTask.on(
       'state_changed',
@@ -66,6 +70,7 @@ export default function Profile() {
       dispatch(updateUserSuccess(data));
       setUpdateSuccess(true);
     } catch (error) {
+      toast.error('Error in deleting this Account');
       dispatch(updateUserFailure(error.message));
     }
   };
@@ -81,6 +86,7 @@ export default function Profile() {
         return;
       }
       dispatch(deleteUserSuccess(data));
+      deleteUsertoast();
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
     }
@@ -95,6 +101,7 @@ export default function Profile() {
         return;
       }
       dispatch(signOutUserSuccess());
+      signOutUsertoast();
     } catch (error) {
       dispatch(signOutUserFailure('nhi chal rha signout abhi'));
     }

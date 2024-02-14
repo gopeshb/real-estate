@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import OAuth from '../components/OAuth';
+import { toast } from 'react-hot-toast';
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ export default function SignUp() {
       }
       setLoading(false);
       setError(null);
+      toast.success("Redirecting to SignIn Page");
       navigate('/sign-in');
     } catch (error) {
       setLoading(false);
@@ -89,7 +91,8 @@ export default function SignUp() {
       <div className="flex items-center my-2 mx-3">
    <p className="text-sm font-semibold">Already have an account?</p>
    <Link to="/sign-in">
-     <span className="text-blue-700 ml-1 hover:underline text-sm font-semibold">Sign In</span>
+     <span onClick={()=>toast.success('Redirecting to Sign In page')} 
+     className="text-blue-700 ml-1 hover:underline text-sm font-semibold">Sign In</span>
    </Link>
    </div>
 
