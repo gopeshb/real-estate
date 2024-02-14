@@ -22,9 +22,6 @@ const PORT=process.env.PORT||5000;
 app.listen(PORT,()=>{
     console.log(`server is running at PORT no. ${PORT}`)
 });
-app.get('/',(req,res)=>{
-    res.send("hello from backend");
-})
 app.use("/api/user",userRouter);
 app.use("/api/auth",authRouter);
 app.use("/api/listing",listingRouter);
