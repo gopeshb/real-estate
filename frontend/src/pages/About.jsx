@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutPage = () => {
   return (
-    <main className='p-6 m-8 relative  max-w-screen-lg flex flex-col  mx-auto  bg-white rounded-lg shadow-md'>
+    <main className='p-6 m-8 relative  max-w-screen-lg flex flex-col  mx-auto  bg-white rounded-lg shadow-lg shadow-blue-700'>
       <h1 className='text-center bg-gradient-to-r from-indigo-500 rounded-lg p-2 font-bold text-2xl text-sky-600'>ABOUT US:</h1>
       <div >
         <p className='text-xl font-mono p-5 flex-wrap m-5 text-center'>

@@ -135,7 +135,7 @@ export default function CreateListing() {
       };
     console.log(formData);
   return (
-    <main className='p-8 max-w-screen-xl mx-auto m-8 bg-white b-2 shadow-lg rounded-lg '>
+    <main className='p-8 max-w-screen-xl mx-auto m-8 bg-white b-2 shadow-lg rounded-lg shadow-blue-700 '>
         <h1 className='text-3xl font-bold text-center m-4 my-7 '>Create Listing</h1>
         <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-8 '>
             <div className='flex flex-col gap-6 flex-1'>

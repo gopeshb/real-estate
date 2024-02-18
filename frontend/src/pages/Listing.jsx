@@ -49,7 +49,7 @@ export default function Listing() {
   }, [params.listingId]);
 
   return (
-    <main className='p-4 relative  max-w-screen-lg flex flex-col  mx-auto my-4 bg-white rounded-lg shadow-md'>
+    <main className='p-4 relative  max-w-screen-lg flex flex-col  mx-auto my-4 bg-white rounded-lg shadow-lg shadow-blue-700'>
       {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
       {error && (
         <p className='text-center my-7 text-xl text-red-700 font-semibold'>Something went wrong</p>

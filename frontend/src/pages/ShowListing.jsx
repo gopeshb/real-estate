@@ -48,7 +48,7 @@ export default function ShowListing() {
   };
 
   return (
-    <div className="p-4 max-w-screen-md flex flex-col gap-4 mx-auto my-6 bg-white rounded-lg shadow-md">
+    <div className="p-4 max-w-screen-md flex flex-col gap-4 mx-auto my-6 bg-white rounded-lg shadow-lg shadow-blue-700">
       <h1 className="text-2xl font-semibold text-center mb-4 m-3">Your Listings</h1>
 
       {loading ? (

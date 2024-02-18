@@ -43,7 +43,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="p-2 max-w-md mx-auto my-8 bg-white rounded-lg shadow-md">
+    <div className="p-2 max-w-md mx-auto my-8 bg-white rounded-lg shadow-lg shadow-blue-600 ">
       <h1 className="text-2xl text-center font-bold my-7 mx-3">Sign In</h1>
       <form className="flex flex-col gap-4 mx-3" onSubmit={submitHandler}>
         <label htmlFor="email" className="text-sm font-semibold">
