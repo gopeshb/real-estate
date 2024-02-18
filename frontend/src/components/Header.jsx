@@ -26,28 +26,29 @@ function Header() {
     <header className='bg-slate-950 shadow-md w-full'>
       <div className='flex justify-between max-w-6xl mx-auto p-3 items-center'>
         <Link to='/'>
-        <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
+        <h1 className='font-bold text-sx sm:text-2xl flex flex-wrap'>
             <span className='text-blue-500'>Property</span>
-            <span className='text-slate-200'>Estate</span>
+            <span className='text-slate-100'>Estate</span>
         </h1>
         </Link>
-        <form onSubmit={handleSubmit} className='bg-slate-200 p-3 rounded-lg flex items-center'>
+        <form onSubmit={handleSubmit} className='bg-white p-3 rounded-lg flex items-center'>
           <input className='bg-transparent focus:outline-none w-24 sm:w-60' type="text" placeholder="Search..."
           value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)}/>
           <button>
-          <FaSearch className='text-blue-600'/>
+          <FaSearch className='text-blue-700'/>
           </button>
         </form>
         <ul className='flex items-center gap-4'>
           <Link to='/'>
-          <li className='hidden sm:inline text-blue-700 font-bold hover:underline'>Home</li>
+          <li className='hidden sm:inline text-blue-600 font-bold hover:text-blue-700'>Home</li>
           </Link>
           <Link to='/about'>
-          <li className='hidden  sm:inline text-blue-700 font-bold hover:underline'>About</li>
+          <li className='hidden sm:inline text-blue-600 font-bold  hover:text-blue-700 '>About</li>
+
           </Link>
           {currentUser?(
             <Link to='/profile'>
-            <img className='rounded-full  h-8 w-8 object-cover'src={currentUser.avatar} alt='profile'/>
+            <img className='rounded-full bg-white border border-white h-8 w-8 object-cover'src={currentUser.avatar} alt='profile'/>
             </Link>
           ):(
           <Link to='/sign-in'>

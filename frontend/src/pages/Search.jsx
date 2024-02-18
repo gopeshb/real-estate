@@ -143,7 +143,7 @@ export default function Search() {
           Filter
         </button>
         <div id='filter-container' className='hidden'>
-          <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
+          <form onSubmit={handleSubmit} className='flex flex-col gap-8 text-white'>
             <div className='flex items-center gap-2'>
               <label className='whitespace-nowrap font-semibold'>
                 Search:
