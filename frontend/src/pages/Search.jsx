@@ -225,7 +225,7 @@ export default function Search() {
           </div>
         
           <div className='flex items-center gap-2'>
-  <label className='font-semibold text-gray-800'>Sort:</label>
+  <label className='font-semibold '>Sort:</label>
   <select
     onChange={handleChange}
     defaultValue={'created_at_desc'}
