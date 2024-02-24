@@ -44,7 +44,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="p-3 max-w-md mx-auto my-8 bg-white rounded-lg shadow-lg shadow-blue-700">
+    <div className="p-3 max-w-md mx-auto my-8 bg-white rounded-lg">
       <h1 className="text-2xl text-center font-bold my-7 mx-3">Sign Up</h1>
       <form className="flex flex-col gap-5 mx-3" onSubmit={submitHandler}>
         <label htmlFor="username" className="text-sm font-semibold">

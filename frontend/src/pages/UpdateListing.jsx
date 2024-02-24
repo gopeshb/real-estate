@@ -145,17 +145,17 @@ export default function UpdateListing() {
       };
     console.log(formData);
   return (
-    <main className='p-2 max-w-4xl mx-auto '>
-        <h1 className='text-2xl font-bold text-center my-7 '>Update Listing</h1>
+    <main className='p-8 max-w-screen-xl mx-auto m-8 bg-white b-2  rounded-lg'>
+        <h1 className='text-3xl font-bold text-center m-4 my-7'>Update Listing</h1>
         <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-8 '>
             <div className='flex flex-col gap-6 flex-1'>
-                <input className='border p-3 rounded-lg' type='text' placeholder='Name' id='name'
+                <input className='border border-gray-400 p-3 rounded-lg' type='text' placeholder='Name' id='name'
                  maxLength='64' minLength='8' required onChange={handleChange}
                  value={formData.name}/>
-                 <textarea className='border p-3 rounded-lg' type='text' placeholder='Description' id='description'
+                 <textarea className='border border-gray-400 p-3 rounded-lg' type='text' placeholder='Description' id='description'
                   minLength='8' required onChange={handleChange}
                   value={formData.description}/>
-                  <input type='text' placeholder='Address' className='border p-3 rounded-lg' id='address' required
+                  <input type='text' placeholder='Address' className='border border-gray-400 p-3 rounded-lg' id='address' required
                   onChange={handleChange} value={formData.address}/>
                   <div className='flex gap-4 flex-wrap'>
                     <div className='flex gap-1 text-sm font-semibold'>
@@ -186,17 +186,17 @@ export default function UpdateListing() {
                   </div>
                   <div className='flex flex-wrap gap-5'>
                     <div className='flex item-center gap-2 font-semibold'>
-                        <input className='p-2 border-gray-400 rounded-lg' type='number' id='bedrooms' min='1' max='100' required  onChange={handleChange}
+                        <input className='p-2 border border-gray-400 rounded-lg' type='number' id='bedrooms' min='1' max='100' required  onChange={handleChange}
                 value={formData.bedrooms}/>
                         <p className='text-sm font-semibold self-center'>Bedrooms</p>
                     </div>
                     <div className='flex item-center gap-2 font-semibold'>
-                        <input className='p-2 border-gray-400 rounded-lg' type='number' id='bathrooms' min='1' max='100' required
+                        <input className='p-2 border border-gray-400 rounded-lg' type='number' id='bathrooms' min='1' max='100' required
                          onChange={handleChange} value={formData.bathrooms}/>
                         <p className='text-sm font-semibold self-center'>Bathrooms</p>
                     </div>
                     <div className='flex item-center gap-2 font-semibold'>
-                        <input className='p-2 border-gray-400 rounded-lg' type='number' id='regularPrice' min='100' required
+                        <input className='p-2 border border-gray-400 rounded-lg' type='number' id='regularPrice' min='100' required
                          onChange={handleChange} value={formData.regularPrice}/>
                         <div className='flex flex-col'>
                         <p className='text-sm font-semibold'>Regular Price </p>
@@ -204,10 +204,10 @@ export default function UpdateListing() {
                         </div>
                     </div>{
                       formData.offer &&( <div className='flex item-center gap-2 font-semibold'>
-                      <input className='p-2 border-gray-400 rounded-lg' type='number' id='discountedPrice' min='0' required
+                      <input className='p-2 border border-gray-400 rounded-lg' type='number' id='discountedPrice' min='0' required
                       onChange={handleChange} value={formData.discountedPrice}/>
                       <div className='flex flex-col'>
-                      <p className='text-sm font-semibold'>Discounted Price</p>
+                      <p className='text-sm font-semibold '>Discounted Price</p>
                       <span className='text-xs'>(₹ / month)</span>
                       </div>
                   </div>)
@@ -248,7 +248,7 @@ export default function UpdateListing() {
   )
 }
 
-                <button disabled={loading} className='mx-1 p-3 bg-blue-500 text-white rounded-lg uppercase 
+                <button disabled={loading} className='mx-1 m-5 p-3 bg-blue-900 text-white rounded-lg uppercase 
             hover:opacity-90 disabled:opacity-80 '>{loading?"Updating...":'Update Listing'}</button>
             </div>
             {error && <p className='text-red-500 mt-1 mx-1 text-sm text-semibold'>{error}</p>}
