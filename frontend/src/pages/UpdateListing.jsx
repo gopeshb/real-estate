@@ -3,6 +3,7 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/
 import { app } from '../firebase';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { signOutUserSuccess } from '../redux/user/userSlice';
 export default function UpdateListing() {
     const params=useParams();
   const {currentUser}=useSelector(state=>state.user);
@@ -134,6 +135,11 @@ export default function UpdateListing() {
           const data = await res.json();
           setLoading(false);
           if (data.success === false) {
+            if(data.message==='unauthorized access'){
+              dispatch(signOutUserSuccess());
+              navigate('/sign-in');
+              return;
+            }
             setError(data.message);
           }
           navigate(`/listing/${data._id}`);

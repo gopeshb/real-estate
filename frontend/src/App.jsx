@@ -12,6 +12,7 @@ import UpdateListing from "./pages/UpdateListing";
 import Listing from "./pages/Listing";
 import { Toaster } from 'react-hot-toast';
 import Search from "./pages/Search";
+import NopageFound from "./pages/NopageFound";
 export default function App() {
   return (
     <BrowserRouter>
@@ -30,6 +31,7 @@ export default function App() {
       <Route path="/show-listing" element={<ShowListing/>}/>
       <Route path="/update-listing/:listingId" element={<UpdateListing/>}/>
       </Route>
+      <Route path="*" element={<NopageFound/>}/>
     </Routes>
     </BrowserRouter>
   )

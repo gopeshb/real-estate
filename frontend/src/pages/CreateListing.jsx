@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { toast } from 'react-hot-toast';
+import {signOutUserSuccess} from '../redux/user/userSlice.js';
 export default function CreateListing() {
   const {currentUser}=useSelector(state=>state.user);
+  const dispatch=useDispatch();
   const navigate=useNavigate();
     const [files,setFiles]=useState([]);
     const [formData, setFormData] = useState({
@@ -123,6 +125,12 @@ export default function CreateListing() {
           const data = await res.json();
           setLoading(false);
           if (data.success === false) {
+            if(data.message==='unauthorized access'){
+              dispatch(signOutUserSuccess());
+              toast.success("session expired,please sign in again");
+              navigate('/sign-in');
+              return;
+            }
             setError(data.message);
           }
           navigate(`/listing/${data._id}`);

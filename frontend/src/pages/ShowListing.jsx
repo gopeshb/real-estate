@@ -13,6 +13,12 @@ export default function ShowListing() {
       const res = await fetch(`/api/user/listings/${currentUser._id}`);
       const data = await res.json();
       if (data.success === false) {
+        if(data.message==='unauthorized access'){
+          dispatch(signOutUserSuccess());
+          toast.success("session expired,please sign in again");
+          navigate('/sign-in');
+          return;
+        }
         setListingsError(true);
         setLoading(false);
         return;
